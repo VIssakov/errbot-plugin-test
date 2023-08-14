@@ -17,7 +17,7 @@ class errbotplugintest(BotPlugin):
         return { 'ENVIRONMENTS': ['production', 'stg', 'pre-production-1', 'staging1']}
 
     @staticmethod
-    def validate_params(self, env, ref):
+    def validate_params(self, env):
         """
         Validate input params
         """
@@ -34,7 +34,7 @@ class errbotplugintest(BotPlugin):
         return ' | '.join(self.config['ENVIRONMENTS'])
 
     @arg_botcmd('env', type=str, help='env to deploy, to view envs list run: !errbotplugintest show environments' )
-    def errbotplugintest_deploy(self, message, env=None, ref=None):
+    def errbotplugintest_deploy(self, message, env=None):
         """
         Start deploy errbotplugintest service via gitlab trigger
         """
@@ -47,7 +47,7 @@ class errbotplugintest(BotPlugin):
             return
 
         try:
-            errbotplugintest.validate_params(self, env, ref)
+            errbotplugintest.validate_params(self, env)
         except ValidationException as e:
             self.log.exception(e)
             yield e
