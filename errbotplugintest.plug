@@ -1,0 +1,10 @@
+[Core]
+Name = errbotplugintest
+Module = errbotplugintest
+
+[Documentation]
+description = manage errbotplugintest
+
+[Python]
+version = 3
+
