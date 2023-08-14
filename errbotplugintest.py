@@ -4,9 +4,6 @@ errbotplugintest errbot plugin
 """
 
 from errbot import BotPlugin, botcmd, arg_botcmd, ValidationException
-import common as common
-import requests
-from helpers.locker import Locker
 
 class errbotplugintest(BotPlugin):
     """
