@@ -26,6 +26,16 @@ class errbotplugintest(BotPlugin):
                 "Wrong environment name: {0}".format(env)
             )
 
+    @staticmethod
+    def get_acl_usr(msg):
+        """Return the ACL attribute of the sender of the given message"""
+        if hasattr(
+            msg.frm, "aclattr"
+        ):  # if the identity requires a special field to be used for acl
+            return msg.frm.aclattr
+        return msg.frm.person  # default
+
+
     @botcmd
     def errbotplugintest_show_environments(self, message, args):
         """
@@ -56,7 +66,8 @@ class errbotplugintest(BotPlugin):
 
         #try:
             #return 'test: {0}'.format(message.frm)
-        yield f"{ message.frm }"
+        usr = errbotplugintest.get_acl_usr(message)
+        yield f"{ usr }"
         return
         #except Exception as e:
         #   self.log.exception(e)
