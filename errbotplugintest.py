@@ -4,7 +4,6 @@ errbotplugintest errbot plugin
 """
 
 from errbot import BotPlugin, botcmd, arg_botcmd, ValidationException, core_plugins
-import Profiles
 
 class errbotplugintest(BotPlugin):
     """
@@ -67,8 +66,8 @@ class errbotplugintest(BotPlugin):
 
         #try:
             #return 'test: {0}'.format(message.frm)
-        usr = Profiles()
-        yield f"{ usr['access'] }"
+        #usr = errbotplugintest.get_acl_usr(message)
+        yield f"{ core_plugins.acls.get_acl_usr(message) }"
         return
         #except Exception as e:
         #   self.log.exception(e)
