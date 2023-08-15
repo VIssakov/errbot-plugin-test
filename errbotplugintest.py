@@ -56,7 +56,8 @@ class errbotplugintest(BotPlugin):
 
         #try:
             #return 'test: {0}'.format(message.frm)
-        return 'test'
+        yield "test"
+        return
         #except Exception as e:
         #   self.log.exception(e)
         #    yield "Request processing error. See errbot logs for details"
