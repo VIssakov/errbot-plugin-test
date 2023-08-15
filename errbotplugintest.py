@@ -56,7 +56,7 @@ class errbotplugintest(BotPlugin):
 
         #try:
             #return 'test: {0}'.format(message.frm)
-        yield "test"
+        yield f"{ message.frm }"
         return
         #except Exception as e:
         #   self.log.exception(e)
