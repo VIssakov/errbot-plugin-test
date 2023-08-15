@@ -67,7 +67,7 @@ class errbotplugintest(BotPlugin):
         #try:
             #return 'test: {0}'.format(message.frm)
         usr = errbotplugintest.get_acl_usr(message)
-        yield f"{ usr }"
+        yield f"{ message.frm.aclattr }"
         return
         #except Exception as e:
         #   self.log.exception(e)
