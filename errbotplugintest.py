@@ -69,7 +69,7 @@ class errbotplugintest(BotPlugin):
             #return 'test: {0}'.format(message.frm)
         usr = errbotplugintest.get_acl_usr(message)
         #usr = Profiles()
-        yield f"{ usr }"
+        yield f"{ username } { usr }"
         return
         #except Exception as e:
         #   self.log.exception(e)
@@ -82,21 +82,15 @@ class errbotplugintest(BotPlugin):
 
         staging_pattern = 'stg|staging|pre-production'
 
-        try:
-            username = str(message.frm).split("@")[1]
-        except Exception as e:
-            self.log.exception(e)
-            yield "Request processing error. See errbot logs for details"
-            return 'error fetching username'
-
-        try:
-            errbotplugintest.validate_params(self, env)
-        except ValidationException as e:
-            self.log.exception(e)
-            yield e
-            return 'error validation'
-
         if re.match(staging_pattern, env):
+
+            try:
+                errbotplugintest.validate_params(self, env)
+            except ValidationException as e:
+                self.log.exception(e)
+                yield e
+                return 'error validation'
+
             errbotplugintest.errbotplugintest_deploy(self, message, env)
         else:
             raise ValidationException(
