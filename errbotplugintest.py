@@ -4,6 +4,7 @@ errbotplugintest errbot plugin
 """
 
 from errbot import BotPlugin, botcmd, arg_botcmd, ValidationException, core_plugins
+import re
 
 class errbotplugintest(BotPlugin):
     """
@@ -74,3 +75,30 @@ class errbotplugintest(BotPlugin):
         #   self.log.exception(e)
         #    yield "Request processing error. See errbot logs for details"
         #    return
+
+
+    @arg_botcmd('env', type=str, help='env to deploy, to view envs list run: !errbotplugintest show environments' )
+    def errbotplugintest_deploy_stg(self, message, env=None):
+
+        staging_pattern = 'stg|staging|pre-production'
+
+        try:
+            username = str(message.frm).split("@")[1]
+        except Exception as e:
+            self.log.exception(e)
+            yield "Request processing error. See errbot logs for details"
+            return 'error fetching username'
+
+        try:
+            errbotplugintest.validate_params(self, env)
+        except ValidationException as e:
+            self.log.exception(e)
+            yield e
+            return 'error validation'
+
+        if re.match(staging_pattern, env):
+            self.errbotplugintest_deploy(message, env=None)
+        else:
+            raise ValidationException(
+                "You can deploy only on staging environments"
+            )
