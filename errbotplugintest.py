@@ -78,7 +78,7 @@ class errbotplugintest(BotPlugin):
 
 
     @arg_botcmd('env', type=str, help='env to deploy, to view envs list run: !errbotplugintest show environments' )
-    def errbotplugintest_deploy_stg(self, message, env=None):
+    def errbotplugintest_deploy_dev(self, message, env=None):
 
         staging_pattern = 'stg|staging|pre-production'
 
@@ -97,7 +97,7 @@ class errbotplugintest(BotPlugin):
             return 'error validation'
 
         if re.match(staging_pattern, env):
-            self.errbotplugintest_deploy(message, env=None)
+            self.errbotplugintest_deploy(message, env)
         else:
             raise ValidationException(
                 "You can deploy only on staging environments"
