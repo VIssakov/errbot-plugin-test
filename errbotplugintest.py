@@ -69,7 +69,7 @@ class errbotplugintest(BotPlugin):
             #return 'test: {0}'.format(message.frm)
         usr = errbotplugintest.get_acl_usr(message)
         #usr = Profiles()
-        yield f"{ username } { usr }"
+        yield f"{ message } { usr }"
         return
         #except Exception as e:
         #   self.log.exception(e)
