@@ -69,7 +69,7 @@ class errbotplugintest(BotPlugin):
             #return 'test: {0}'.format(message.frm)
         usr = errbotplugintest.get_acl_usr(message)
         #usr = Profiles()
-        yield f"{ message } { usr }"
+        yield f"message: { message }, env: { env }, usr: { usr }"
         return
         #except Exception as e:
         #   self.log.exception(e)
@@ -83,7 +83,7 @@ class errbotplugintest(BotPlugin):
         staging_pattern = 'stg|staging|pre-production'
 
         if re.match(staging_pattern, env):
-            self.errbotplugintest_deploy(message, env)
+            errbotplugintest.errbotplugintest_deploy(message, env)
         else:
             raise ValidationException(
                 "You can deploy only on staging environments"
