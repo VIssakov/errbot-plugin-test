@@ -97,7 +97,7 @@ class errbotplugintest(BotPlugin):
             return 'error validation'
 
         if re.match(staging_pattern, env):
-            self.errbotplugintest_deploy(message, env)
+            errbotplugintest.errbotplugintest_deploy(self, message, env)
         else:
             raise ValidationException(
                 "You can deploy only on staging environments"
