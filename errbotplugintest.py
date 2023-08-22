@@ -76,7 +76,7 @@ class errbotplugintest(BotPlugin):
         if re.match(staging_pattern, env):
             deploy = errbotplugintest.errbotplugintest_deploy(self, message, env)
             next(deploy)
-            next(deploy)
+            #next(deploy)
             #next(deploy)
         else:
             raise ValidationException(
