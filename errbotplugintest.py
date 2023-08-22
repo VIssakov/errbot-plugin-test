@@ -58,9 +58,9 @@ class errbotplugintest(BotPlugin):
         #try:
             #return 'test: {0}'.format(message.frm)
         #usr = Profiles()
-        yield f"message: { message }, env: { env }, usr: { username }"
+        #yield f"message: { message }, env: { env }, usr: { username }"
         #yield f"{usr}"
-        return
+        return f"message: { message }, env: { env }, usr: { username }"
         #except Exception as e:
         #   self.log.exception(e)
         #    yield "Request processing error. See errbot logs for details"
