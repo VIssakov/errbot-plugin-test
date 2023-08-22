@@ -38,7 +38,7 @@ class errbotplugintest(BotPlugin):
 
 
     @botcmd
-    def errbotplugintest_show_environments(self, message, args):
+    def errbotplugintest_show_environments(self):
         """
         Get list of errbotplugintest predefined environments
         """
@@ -69,7 +69,8 @@ class errbotplugintest(BotPlugin):
             #return 'test: {0}'.format(message.frm)
         usr = errbotplugintest.get_acl_usr(message)
         #usr = Profiles()
-        yield f"message: { message }, env: { env }, usr: { usr }"
+        #yield f"message: { message }, env: { env }, usr: { usr }"
+        yield f"{self['groups']} {self['access']}"
         return
         #except Exception as e:
         #   self.log.exception(e)
