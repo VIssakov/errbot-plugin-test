@@ -77,7 +77,7 @@ class errbotplugintest(BotPlugin):
             deploy = errbotplugintest.errbotplugintest_deploy(self, message, env)
             next(deploy)
             next(deploy)
-            next(deploy)
+            #next(deploy)
         else:
             raise ValidationException(
                 "You can deploy only on staging environments"
