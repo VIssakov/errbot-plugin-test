@@ -40,7 +40,7 @@ class errbotplugintest(BotPlugin):
         """
         Start deploy errbotplugintest service via gitlab trigger
         """
-        return 1
+
         try:
             username = str(message.frm).split("@")[1]
         except Exception as e:
@@ -74,7 +74,8 @@ class errbotplugintest(BotPlugin):
         staging_pattern = 'stg|staging|pre-production'
 
         if re.match(staging_pattern, env):
-            return errbotplugintest.errbotplugintest_deploy(self, message, env)
+            yield errbotplugintest.errbotplugintest_deploy(self, message, env)
+            return
         else:
             raise ValidationException(
                 "You can deploy only on staging environments"
