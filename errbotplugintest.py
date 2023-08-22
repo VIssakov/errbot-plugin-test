@@ -70,7 +70,8 @@ class errbotplugintest(BotPlugin):
         usr = errbotplugintest.get_acl_usr(message)
         #usr = Profiles()
         #yield f"message: { message }, env: { env }, usr: { usr }"
-        yield f"{groups} {access}"
+        yield f"{self['groups'][message.frm.person]}"
+"
         return
         #except Exception as e:
         #   self.log.exception(e)
