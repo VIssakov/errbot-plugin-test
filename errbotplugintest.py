@@ -71,7 +71,6 @@ class errbotplugintest(BotPlugin):
         #usr = Profiles()
         #yield f"message: { message }, env: { env }, usr: { usr }"
         yield f"{self['groups'][message.frm.person]}"
-"
         return
         #except Exception as e:
         #   self.log.exception(e)
