@@ -6,6 +6,15 @@ errbotplugintest errbot plugin
 from errbot import BotPlugin, botcmd, arg_botcmd, ValidationException, core_plugins
 import re
 
+def get_acl_usr(msg):
+    """Return the ACL attribute of the sender of the given message"""
+    if hasattr(
+         msg.frm, "aclattr"
+    ):  # if the identity requires a special field to be used for acl
+        return msg.frm.aclattr
+    return msg.frm.person  # default
+
+
 class errbotplugintest(BotPlugin):
     """
     Manage errbotplugintest service via chatbot
@@ -26,16 +35,6 @@ class errbotplugintest(BotPlugin):
             raise ValidationException(
                 "Wrong environment name: {0}".format(env)
             )
-
-    @staticmethod
-    def get_acl_usr(msg):
-        """Return the ACL attribute of the sender of the given message"""
-        if hasattr(
-            msg.frm, "aclattr"
-        ):  # if the identity requires a special field to be used for acl
-            return msg.frm.aclattr
-        return msg.frm.person  # default
-
 
     @botcmd
     def errbotplugintest_show_environments(self):
@@ -64,13 +63,13 @@ class errbotplugintest(BotPlugin):
             yield e
             return 'error validation'
 
+        usr = get_acl_usr(message)
 
         #try:
             #return 'test: {0}'.format(message.frm)
-        usr = errbotplugintest.get_acl_usr(message)
         #usr = Profiles()
         #yield f"message: { message }, env: { env }, usr: { usr }"
-        yield f"{self['access'].items()}"
+        yield f"{usr}"
         return
         #except Exception as e:
         #   self.log.exception(e)
