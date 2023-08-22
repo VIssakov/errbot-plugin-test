@@ -47,7 +47,7 @@ class errbotplugintest(BotPlugin):
             self.log.exception(e)
             yield "Request processing error. See errbot logs for details"
             return 'error fetching username'
-
+        print(1)
         try:
             errbotplugintest.validate_params(self, env)
         except ValidationException as e:
