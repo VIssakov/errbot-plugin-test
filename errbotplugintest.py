@@ -47,7 +47,6 @@ class errbotplugintest(BotPlugin):
             self.log.exception(e)
             yield "Request processing error. See errbot logs for details"
             return 'error fetching username'
-        print(1)
         try:
             errbotplugintest.validate_params(self, env)
         except ValidationException as e:
@@ -74,7 +73,7 @@ class errbotplugintest(BotPlugin):
         staging_pattern = 'stg|staging|pre-production'
 
         if re.match(staging_pattern, env):
-            next(errbotplugintest.errbotplugintest_deploy(self, message, env))
+            yield next(errbotplugintest.errbotplugintest_deploy(self, message, env))
         else:
             raise ValidationException(
                 "You can deploy only on staging environments"
