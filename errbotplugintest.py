@@ -40,7 +40,7 @@ class errbotplugintest(BotPlugin):
         """
         Start deploy errbotplugintest service via gitlab trigger
         """
-
+        return 1
         try:
             username = str(message.frm).split("@")[1]
         except Exception as e:
