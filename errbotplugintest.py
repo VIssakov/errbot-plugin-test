@@ -59,9 +59,8 @@ class errbotplugintest(BotPlugin):
             #return 'test: {0}'.format(message.frm)
         #usr = Profiles()
         #print(f"message: { message }, env: { env }, usr: { username }")
-        yield f"message: { message }, server: { server }, usr: { username }, branch {branch}"
         #yield f"{usr}"
-        return
+        yield next(errbotplugintest.deploy(self, server, branch))
         #except Exception as e:
         #   self.log.exception(e)
         #    yield "Request processing error. See errbot logs for details"
@@ -74,16 +73,14 @@ class errbotplugintest(BotPlugin):
 
         staging_pattern = 'stg|staging|pre-production'
 
-        #print(server, branch)
-        #message = 'errbotplugintest deploy '
-        #print(type(message))
-        #message = message.replace('dev ', '')
-        #print(message)
-
         if re.findall(staging_pattern, server):
             print(message, "|", server, "|", branch)
-            yield next(errbotplugintest.errbotplugintest_deploy(self, server=server, branch=branch))
+            yield next(errbotplugintest.deploy(self, server, branch))
         else:
             raise ValidationException(
                 "You can deploy only on staging environments"
             )
+
+    def deploy(server, branch):
+            yield f" server: { server }, branch {branch}"
+            return
