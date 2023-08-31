@@ -35,7 +35,7 @@ class errbotplugintest(BotPlugin):
         """
         return ' | '.join(self.config['ENVIRONMENTS'])
 
-    #@arg_botcmd('branch', type=str, help='branch to deploy', default='master')
+    @arg_botcmd('branch', type=str, help='branch to deploy', default='master')
     @arg_botcmd('server', type=str, help='server to deploy')
     def errbotplugintest_deploy(self, message, server=None, branch=None):
         """
@@ -82,7 +82,7 @@ class errbotplugintest(BotPlugin):
 
         if re.findall(staging_pattern, server):
             print(message, "|", server, "|", branch)
-            yield next(self.errbotplugintest_deploy(server, branch))
+            yield next(errbotplugintest.errbotplugintest_deploy(self, server, branch))
         else:
             raise ValidationException(
                 "You can deploy only on staging environments"
