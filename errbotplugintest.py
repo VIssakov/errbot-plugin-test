@@ -37,7 +37,7 @@ class errbotplugintest(BotPlugin):
 
     @arg_botcmd('branch', type=str, help='branch to deploy', default='master')
     @arg_botcmd('server', type=str, help='server to deploy')
-    def errbotplugintest_deploy(self, message, server=None, branch=None):
+    def errbotplugintest_deploy(self, message, server=None):
         """
         Start deploy errbotplugintest service via gitlab trigger
         """
