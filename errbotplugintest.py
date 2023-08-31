@@ -36,7 +36,8 @@ class errbotplugintest(BotPlugin):
         return ' | '.join(self.config['ENVIRONMENTS'])
 
     @arg_botcmd('env', type=str, help='env to deploy, to view envs list run: !errbotplugintest show environments' )
-    def errbotplugintest_deploy(self, message, env=None):
+    @arg_botcmd('branch', type=str, help='branch to deploy', default='master')
+    def errbotplugintest_deploy(self, message, env=None, branch=None):
         """
         Start deploy errbotplugintest service via gitlab trigger
         """
@@ -68,12 +69,13 @@ class errbotplugintest(BotPlugin):
 
 
     @arg_botcmd('env', type=str, help='env to deploy, to view envs list run: !errbotplugintest show environments' )
-    def errbotplugintest_deploy_dev(self, message, env=None):
+    @arg_botcmd('branch', type=str, help='branch to deploy', default='master')
+    def errbotplugintest_deploy_dev(self, message, env=None, branch=None):
 
         staging_pattern = 'stg|staging|pre-production'
 
         if re.match(staging_pattern, env):
-            yield next(errbotplugintest.errbotplugintest_deploy(self, message, env))
+            yield next(errbotplugintest.errbotplugintest_deploy(self, message, env, branch))
         else:
             raise ValidationException(
                 "You can deploy only on staging environments"
