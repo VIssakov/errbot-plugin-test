@@ -59,7 +59,7 @@ class errbotplugintest(BotPlugin):
             #return 'test: {0}'.format(message.frm)
         #usr = Profiles()
         #print(f"message: { message }, env: { env }, usr: { username }")
-        yield f"message: { message }, env: { env }, usr: { username }"
+        yield f"message: { message }, env: { env }, usr: { username }, branch {branch}"
         #yield f"{usr}"
         return
         #except Exception as e:
