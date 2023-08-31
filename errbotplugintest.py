@@ -41,7 +41,7 @@ class errbotplugintest(BotPlugin):
         """
         Start deploy errbotplugintest service via gitlab trigger
         """
-        print(message)
+        print(message, "|", server, "|", branch)
         try:
             username = str(message.frm).split("@")[1]
         except Exception as e:
@@ -75,7 +75,7 @@ class errbotplugintest(BotPlugin):
         staging_pattern = 'stg|staging|pre-production'
 
         print(server, branch)
-        #message = 'deploy'
+        message = 'errbotplugintest deploy '
         #print(type(message))
         #message = message.replace('dev ', '')
         #print(message)
