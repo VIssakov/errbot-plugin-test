@@ -35,7 +35,7 @@ class errbotplugintest(BotPlugin):
         """
         return ' | '.join(self.config['ENVIRONMENTS'])
 
-    @arg_botcmd('branch', type=str, help='branch to deploy', default='master')
+    #@arg_botcmd('branch', type=str, help='branch to deploy', default='master')
     @arg_botcmd('server', type=str, help='server to deploy')
     def errbotplugintest_deploy(self, message, server=None, branch=None):
         """
