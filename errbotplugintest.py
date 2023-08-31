@@ -75,7 +75,7 @@ class errbotplugintest(BotPlugin):
         staging_pattern = 'stg|staging|pre-production'
 
         print(server, branch)
-        message = message.replace('dev ', '')
+        #message = message.replace('dev ', '')
         #print(type(message))
         #message = message.replace('dev ', '')
         #print(message)
