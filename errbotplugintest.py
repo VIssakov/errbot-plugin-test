@@ -49,7 +49,7 @@ class errbotplugintest(BotPlugin):
             yield "Request processing error. See errbot logs for details"
             return 'error fetching username'
         try:
-            errbotplugintest.validate_params(self, server)
+            #errbotplugintest.validate_params(self, server)
         except ValidationException as e:
             self.log.exception(e)
             yield e
