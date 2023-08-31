@@ -81,6 +81,7 @@ class errbotplugintest(BotPlugin):
                 "You can deploy only on staging environments"
             )
 
-    def deploy(server, branch):
+    @staticmethod
+    def deploy(self, server, branch):
             yield f" server: { server }, branch {branch}"
             return
