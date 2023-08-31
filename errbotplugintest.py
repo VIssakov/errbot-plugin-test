@@ -81,7 +81,7 @@ class errbotplugintest(BotPlugin):
         #print(message)
 
         if re.findall(staging_pattern, server):
-            print(message, server, branch)
+            print(message, "|", server, "|", branch)
             yield next(errbotplugintest.errbotplugintest_deploy(self, message, server, branch))
         else:
             raise ValidationException(
