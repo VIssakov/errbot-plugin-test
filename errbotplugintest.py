@@ -82,7 +82,7 @@ class errbotplugintest(BotPlugin):
 
         if re.findall(staging_pattern, server):
             print(message, "|", server, "|", branch)
-            yield next(errbotplugintest.errbotplugintest_deploy(self, server))
+            yield next(errbotplugintest.errbotplugintest_deploy(self, message, server))
         else:
             raise ValidationException(
                 "You can deploy only on staging environments"
