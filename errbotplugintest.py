@@ -76,7 +76,7 @@ class errbotplugintest(BotPlugin):
 
         print(env, branch)
 
-        if re.match(staging_pattern, env):
+        if re.findall(staging_pattern, env):
             yield next(errbotplugintest.errbotplugintest_deploy(self, message, env, branch))
         else:
             raise ValidationException(
