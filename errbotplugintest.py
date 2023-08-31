@@ -68,8 +68,8 @@ class errbotplugintest(BotPlugin):
         #    return
 
 
-    @arg_botcmd('env', type=str, help='env to deploy, to view envs list run: !errbotplugintest show environments' )
     @arg_botcmd('branch', type=str, help='branch to deploy', default='master')
+    @arg_botcmd('env', type=str, help='env to deploy, to view envs list run: !errbotplugintest show environments' )
     def errbotplugintest_deploy_dev(self, message, env=None, branch=None):
 
         staging_pattern = 'stg|staging|pre-production'
