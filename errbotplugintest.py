@@ -75,6 +75,7 @@ class errbotplugintest(BotPlugin):
         staging_pattern = 'stg|staging|pre-production'
 
         print(env, branch)
+        print(message)
 
         if re.findall(staging_pattern, env):
             yield next(errbotplugintest.errbotplugintest_deploy(self, message, env, branch))
