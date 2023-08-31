@@ -35,9 +35,9 @@ class errbotplugintest(BotPlugin):
         """
         return ' | '.join(self.config['ENVIRONMENTS'])
 
-    @arg_botcmd('env', type=str, help='env to deploy, to view envs list run: !errbotplugintest show environments' )
     @arg_botcmd('branch', type=str, help='branch to deploy', default='master')
-    def errbotplugintest_deploy(self, message, env=None, branch=None):
+    @arg_botcmd('server', type=str, help='server to deploy')
+    def errbotplugintest_deploy(self, message, server=None, branch=None):
         """
         Start deploy errbotplugintest service via gitlab trigger
         """
@@ -49,7 +49,7 @@ class errbotplugintest(BotPlugin):
             yield "Request processing error. See errbot logs for details"
             return 'error fetching username'
         try:
-            errbotplugintest.validate_params(self, env)
+            errbotplugintest.validate_params(self, server)
         except ValidationException as e:
             self.log.exception(e)
             yield e
@@ -59,7 +59,7 @@ class errbotplugintest(BotPlugin):
             #return 'test: {0}'.format(message.frm)
         #usr = Profiles()
         #print(f"message: { message }, env: { env }, usr: { username }")
-        yield f"message: { message }, env: { env }, usr: { username }, branch {branch}"
+        yield f"message: { message }, server: { server }, usr: { username }, branch {branch}"
         #yield f"{usr}"
         return
         #except Exception as e:
@@ -69,16 +69,16 @@ class errbotplugintest(BotPlugin):
 
 
     @arg_botcmd('branch', type=str, help='branch to deploy', default='master')
-    @arg_botcmd('env', type=str, help='env to deploy, to view envs list run: !errbotplugintest show environments' )
-    def errbotplugintest_deploy_dev(self, message, env=None, branch=None):
+    @arg_botcmd('server', type=str, help='server to deploy')
+    def errbotplugintest_deploy_dev(self, message, server=None, branch=None):
 
         staging_pattern = 'stg|staging|pre-production'
 
-        print(env, branch)
+        print(server, branch)
         print(message)
 
-        if re.findall(staging_pattern, env):
-            yield next(errbotplugintest.errbotplugintest_deploy(self, message, env, branch))
+        if re.findall(staging_pattern, server):
+            yield next(errbotplugintest.errbotplugintest_deploy(self, message, server, branch))
         else:
             raise ValidationException(
                 "You can deploy only on staging environments"
