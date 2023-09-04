@@ -75,7 +75,7 @@ class errbotplugintest(BotPlugin):
 
         print(server)
 
-        if re.findall(staging_pattern, server):
+        if all(re.findall(staging_pattern, word) for word in list(server)):
             print(message, "|", server, "|", branch)
             yield next(errbotplugintest.deploy(self, server, branch))
         else:
