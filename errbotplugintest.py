@@ -73,7 +73,7 @@ class errbotplugintest(BotPlugin):
 
         staging_pattern = 'stg|staging|pre-production|_css'
 
-        print(list(server))
+        print(server.split(','))
 
         if all(re.findall(staging_pattern, word) for word in list(server)):
             print(message, "|", server, "|", branch)
