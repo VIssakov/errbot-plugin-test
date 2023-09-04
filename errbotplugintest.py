@@ -71,9 +71,9 @@ class errbotplugintest(BotPlugin):
     @arg_botcmd('server', type=str, help='server to deploy')
     def errbotplugintest_deploy_dev(self, message, server=None, branch=None):
 
-        staging_pattern = 'stg|staging|pre-production'
+        staging_pattern = 'stg|staging|pre-production|_css'
 
-        print(server)
+        print(list(server))
 
         if all(re.findall(staging_pattern, word) for word in list(server)):
             print(message, "|", server, "|", branch)
